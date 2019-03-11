@@ -88,7 +88,8 @@ namespace GamingRoom.Controllers
                                    .Select(g => new { User = Users.FirstOrDefault(y => y.Id == g.Key) ,
                                    Coins = g.Sum(c => c.Coins)}).ToList();
 
-            return Ok(transactions);
+            return Ok(new List<object> { new { User = new User { FirstName = "testic backend", LastName = "opet backend" }, Coins = 55 } });
+            // return Ok(transactions);
         }
     }
 }
