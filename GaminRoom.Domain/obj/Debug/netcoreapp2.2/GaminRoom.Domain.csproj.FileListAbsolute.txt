@@ -23,3 +23,10 @@ D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\GaminRoom.D
 D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\GaminRoom.Domain.runtimeconfig.dev.json
 D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\GaminRoom.Domain.dll
 D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\GaminRoom.Domain.pdb
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Mvc.Abstractions.dll
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Mvc.Core.dll
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Mvc.Abstractions.xml
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Mvc.Core.xml
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\obj\Debug\netcoreapp2.2\GaminRoom.Domain.csproj.CopyComplete

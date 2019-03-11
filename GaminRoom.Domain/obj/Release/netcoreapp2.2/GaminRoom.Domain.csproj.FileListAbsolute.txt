@@ -1,0 +1,11 @@
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Release\netcoreapp2.2\GaminRoom.Domain.deps.json
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Release\netcoreapp2.2\GaminRoom.Domain.runtimeconfig.json
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Release\netcoreapp2.2\GaminRoom.Domain.runtimeconfig.dev.json
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Release\netcoreapp2.2\GaminRoom.Domain.dll
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\bin\Release\netcoreapp2.2\GaminRoom.Domain.pdb
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\obj\Release\netcoreapp2.2\GaminRoom.Domain.csprojAssemblyReference.cache
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\obj\Release\netcoreapp2.2\GaminRoom.Domain.csproj.CoreCompileInputs.cache
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\obj\Release\netcoreapp2.2\GaminRoom.Domain.AssemblyInfoInputs.cache
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\obj\Release\netcoreapp2.2\GaminRoom.Domain.AssemblyInfo.cs
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\obj\Release\netcoreapp2.2\GaminRoom.Domain.dll
+D:\Repos\GamingRoomSolution\GaminRoom.Domain\obj\Release\netcoreapp2.2\GaminRoom.Domain.pdb

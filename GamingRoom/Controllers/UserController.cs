@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GamingRoom.Controllers
 {
+    [AuthorizationAttribute]
     [Route("api/[controller]")]
     public class UserController : BaseController
     {
@@ -87,7 +88,6 @@ namespace GamingRoom.Controllers
             var transactions = Transactions.GroupBy(x => x.UserId)
                                    .Select(g => new { User = Users.FirstOrDefault(y => y.Id == g.Key) ,
                                    Coins = g.Sum(c => c.Coins)}).ToList();
-
             return Ok(new List<object> { new { User = new User { FirstName = "testic backend", LastName = "opet backend" }, Coins = 55 } });
             // return Ok(transactions);
         }

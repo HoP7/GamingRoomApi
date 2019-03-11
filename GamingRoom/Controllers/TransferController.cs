@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using GaminRoom.Domain;
 using GaminRoom.Domain.Dto;
+using GaminRoom.Domain.Helpers;
 using GaminRoom.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamingRoom.Controllers
 {
+    [AuthorizationAttribute]
     [Route("api/[controller]")]
     public class TransferController : BaseController
     {

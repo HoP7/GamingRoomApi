@@ -26,5 +26,7 @@ namespace GaminRoom.Domain.Models
         public List<Transfer> Incoming { get; set; }
 
         public List<Transfer> Outgoing { get; set; }
+
+        public string Token { get; set; }
     }
 }

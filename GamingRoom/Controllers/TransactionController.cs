@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GamingRoom.Controllers
 {
+    [AuthorizationAttribute]
     [Route("api/[controller]")]
     public class TransactionController : BaseController
     {
