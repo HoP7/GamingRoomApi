@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GamingRoom.Controllers
 {
-    [AuthorizationAttribute]
     [Route("api/[controller]")]
     public class UserController : BaseController
     {
@@ -24,6 +23,7 @@ namespace GamingRoom.Controllers
             return Ok(Users);
         }
 
+        [AuthorizationAttribute]
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<User> Get(int id)
@@ -34,43 +34,55 @@ namespace GamingRoom.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] User user)
+        public IActionResult Post([FromBody] User user)
         {
             if (string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Username))
-                throw new Exception("User cannot have empty password or username");
+                return StatusCode(500, "User cannot have empty password or username");
 
             if(user.Password.Length < 6)
-            {
-                throw new Exception("User password need to have min 6 signs");
-            }
-            var password = HashPassword.GeneratePassword(user.Password);
+                return StatusCode(500, "User password need to have min 6 signs");
+            var salt = HashPassword.GenerateSalt();
+            var password = HashPassword.GeneratePassword(salt, user.Password);
             user.Password = password;
-
+            user.Salt = salt;
             var existingUser = Users.FirstOrDefault(x => x.Username == user.Username || x.Email == user.Email);
             if (existingUser != null)
-                throw new Exception("Already exist user with that username or email");
+                return StatusCode(500, "Already exist user with that username or email");
             _db.Users.Add(user);
             _db.SaveChanges();
+            return Ok();
         }
 
+        [AuthorizationAttribute]
         // PUT api/values/5
         [HttpPut]
-        public void Put([FromBody] User user)
+        public IActionResult Put([FromBody] User user)
         {
-            if (string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Username))
-                throw new Exception("User cannot have empty password or username");
+            var u = Users.FirstOrDefault(x => x.Id == user.Id);
+            byte[] salt = null;
+
+            if (string.IsNullOrEmpty(user.Password))
+            {
+                user.Password = u.Password;
+                salt = u.Salt;
+            } else
+            {
+                salt = HashPassword.GenerateSalt();
+            }
 
             if (user.Password.Length < 6)
             {
-                throw new Exception("User password need to have min 6 signs");
+                return StatusCode(500,"User password need to have min 6 signs");
             }
-            var newPassword = HashPassword.GeneratePassword(user.Password);
+            var newPassword = HashPassword.GeneratePassword(salt,user.Password);
             user.Password = newPassword;
+            user.Salt = salt;
             var existingUser = Users.FirstOrDefault(x => (x.Username == user.Username || x.Email == user.Email) && x.Id != user.Id);
             if (existingUser != null)
-                throw new Exception("Already exist user with that username or email");
+                return StatusCode(500,"Already exist user with that username or email");
             _db.Users.Update(user);
             _db.SaveChanges();
+            return Ok();
         }
 
         // DELETE api/values/5
@@ -88,8 +100,7 @@ namespace GamingRoom.Controllers
             var transactions = Transactions.GroupBy(x => x.UserId)
                                    .Select(g => new { User = Users.FirstOrDefault(y => y.Id == g.Key) ,
                                    Coins = g.Sum(c => c.Coins)}).ToList();
-            return Ok(new List<object> { new { User = new User { FirstName = "testic backend", LastName = "opet backend" }, Coins = 55 } });
-            // return Ok(transactions);
+            return Ok(transactions);
         }
     }
 }

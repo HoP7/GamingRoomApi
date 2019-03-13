@@ -8,7 +8,7 @@ namespace GaminRoom.Domain.Helpers
 {
     public class AuthorizationAttribute : TypeFilterAttribute
     {
-        public AuthorizationAttribute() : base(typeof(AuthorizationAttribute))
+        public AuthorizationAttribute() : base(typeof(MyApiAuthorize))
         {
             Arguments = new object[] { };
         }
@@ -17,9 +17,9 @@ namespace GaminRoom.Domain.Helpers
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            User token = context.HttpContext.GetUser();
+            User user = context.HttpContext.GetUser();
             
-            if(token != null)
+            if(user != null)
             {
                 await next();
                 return;

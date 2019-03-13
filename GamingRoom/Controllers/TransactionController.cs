@@ -31,7 +31,13 @@ namespace GamingRoom.Controllers
         {
             return Transactions.FirstOrDefault(x => x.Id == id);
         }
-
+        [HttpGet("payments")]
+        public ActionResult<List<Payment>> Payments()
+        {
+           var user = HttpContext.GetUser();
+var payments =    _db.Payments.Where(x => x.UserId == user.Id).ToList();
+            return payments;
+        }
         [HttpPost("addcoins")]
         public void AddCoins([FromBody] AddCoinsDto addCoinsDto)
         {
@@ -45,19 +51,20 @@ namespace GamingRoom.Controllers
                 user.Coins += 100;
             }
             _db.Users.Update(user);
+            _db.Payments.Add(new Payment { Date = DateTime.UtcNow, Coins = addCoinsDto.Coins, UserId = user.Id });
             _db.SaveChanges();
         }
 
         // POST api/values
         [HttpPost]
-        public string Post([FromBody] TransactionDto transaction)
+        public IActionResult Post([FromBody] TransactionDto transaction)
         {
             var user = Users.FirstOrDefault(x => x.Id == transaction.UserId);
             if (user == null)
-                throw new Exception("User doesnt exist");
+                return StatusCode(500,"User doesnt exist");
             var coins = transaction.Hours * 50;
             if (coins > user.Coins)
-                throw new Exception("You don't have enough coins to play with");
+                return StatusCode(500,"You don't have enough coins to play with");
 
             user.Coins -= (int)(coins);
             var randomCode = RandomString.GenerateString(7);
@@ -66,14 +73,14 @@ namespace GamingRoom.Controllers
                 Coins = (int)coins,
                 Hours = transaction.Hours,
                 Code = randomCode,
-                TransactionDate = new DateTime(),
+                TransactionDate = DateTime.UtcNow,
                 UserId = transaction.UserId
 
             };
             _db.Users.Update(user);
             _db.Transactions.Add(t);
             _db.SaveChanges();
-            return randomCode;
+            return Ok(randomCode);
         }
 
         // PUT api/values/5

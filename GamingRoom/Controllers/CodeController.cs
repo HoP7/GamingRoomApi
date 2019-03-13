@@ -24,14 +24,14 @@ namespace GamingRoom.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [HttpGet("generateCode/{userId}")]
-        public string GenerateCode(int userId)
+        [HttpGet("generateCode")]
+        public string GenerateCode()
         {
             var generatedCode = RandomString.GenerateString(7);
-            var user = Users.FirstOrDefault(x => x.Id == userId);
+            var user = HttpContext.GetUser();
             var code = new Code
             {
-                UserId = userId,
+                UserId = user.Id,
                 GeneratedCode = generatedCode,
                 DateExpired = new DateTime().AddDays(1)
             };

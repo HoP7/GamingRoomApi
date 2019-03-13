@@ -18,11 +18,12 @@ namespace GaminRoom.Domain.Models
 
         public string Password { get; set; }
 
-        public string FullName => FirstName + LastName;
+        public string FullName => FirstName + " " + LastName;
         public int AddedFromLastBonus { get; set; }
 
         public int Coins { get; set; }
 
+        public byte[] Salt { get; set; }
         public List<Transfer> Incoming { get; set; }
 
         public List<Transfer> Outgoing { get; set; }

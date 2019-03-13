@@ -38,6 +38,25 @@ namespace GaminRoom.Domain.Migrations
                     b.ToTable("Codes");
                 });
 
+            modelBuilder.Entity("GaminRoom.Domain.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Coins");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("GaminRoom.Domain.Models.Transaction", b =>
                 {
                     b.Property<int>("Id")
@@ -102,6 +121,10 @@ namespace GaminRoom.Domain.Migrations
 
                     b.Property<string>("Password");
 
+                    b.Property<byte[]>("Salt");
+
+                    b.Property<string>("Token");
+
                     b.Property<string>("Username");
 
                     b.HasKey("Id");
@@ -110,6 +133,14 @@ namespace GaminRoom.Domain.Migrations
                 });
 
             modelBuilder.Entity("GaminRoom.Domain.Models.Code", b =>
+                {
+                    b.HasOne("GaminRoom.Domain.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("GaminRoom.Domain.Models.Payment", b =>
                 {
                     b.HasOne("GaminRoom.Domain.Models.User", "User")
                         .WithMany()

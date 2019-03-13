@@ -18,14 +18,29 @@ namespace GamingRoom.Controllers
         }
 
         // POST api/values
-        [HttpPost]
+        [HttpPost("login")]
         public ActionResult<User> Login([FromBody] LoginDto login)
         {
-            var user = Users.FirstOrDefault(x => x.Username == login.Username && HashPassword.GeneratePassword(x.Password) == HashPassword.GeneratePassword(login.Password));
+            var user = Users.FirstOrDefault(x => x.Username == login.Username);
             if (user == null)
-                throw new Exception("Invalid username/password");
-
+                return StatusCode(500, "Invalid username/password");
+            if(user.Password != HashPassword.GeneratePassword(user.Salt, login.Password))
+                return StatusCode(500, "Invalid username/password");
+            user.Token = RandomString.GenerateString(8);
+            _db.Users.Update(user);
+            _db.SaveChanges();
             return user;
+        }
+        [HttpPost("logout")]
+        public ActionResult<User> Logout([FromBody] User user)
+        {
+            var userTemp = Users.FirstOrDefault(x => x.Username == user.Username);
+            if (userTemp == null)
+                return StatusCode(500, "Not exist");
+            userTemp.Token = null;
+            _db.Users.Update(user);
+            _db.SaveChanges();
+            return null;
         }
     }
 }

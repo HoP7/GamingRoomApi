@@ -1,10 +1,6 @@
 ﻿using GaminRoom.Domain.Models;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 
 namespace GaminRoom.Domain.Helpers
 {
@@ -20,6 +16,8 @@ namespace GaminRoom.Domain.Helpers
             GamingRoomContext db = (GamingRoomContext)httpContext.RequestServices.GetService(typeof(GamingRoomContext));
 
             string token = httpContext.GetToken();
+              if(token == null)
+                return null;
             User user = db.Users.FirstOrDefault(x => x.Token == token);
             return user;
         }

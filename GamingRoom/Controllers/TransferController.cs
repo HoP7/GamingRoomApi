@@ -46,14 +46,14 @@ namespace GamingRoom.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] TransferDto transfer)
+        public IActionResult Post([FromBody] TransferDto transfer)
         {
             if (string.IsNullOrEmpty(transfer.UserCode))
-                throw new Exception("User code is required");
+                return StatusCode(500,"User code is required");
 
             var code = Codes.FirstOrDefault(x => x.GeneratedCode == transfer.UserCode && new DateTime() < x.DateExpired);
             if (code == null)
-                throw new Exception("Code doesn't exist or its expired");
+                return StatusCode(500,"Code doesn't exist or its expired");
 
             var t = new Transfer
             {
@@ -70,6 +70,7 @@ namespace GamingRoom.Controllers
             _db.Users.Update(sender);
             _db.Transfers.Add(t);
             _db.SaveChanges();
+            return Ok();
         }
 
         // PUT api/values/5

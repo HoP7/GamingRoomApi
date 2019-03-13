@@ -26,5 +26,6 @@ namespace GaminRoom.Domain
         public DbSet<Code> Codes { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Transfer> Transfers { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }
