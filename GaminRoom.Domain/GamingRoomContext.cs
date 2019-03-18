@@ -12,15 +12,15 @@ namespace GaminRoom.Domain
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Transfer>()
-                .HasOne(u => u.Sender)
-                .WithMany(t => t.Outgoing)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Transfer>()
+            //    .HasOne(u => u.Sender)
+            //    .WithMany(t => t.Outgoing)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Transfer>()
-                .HasOne(u => u.Receiver)
-                .WithMany(t => t.Incoming)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Transfer>()
+            //    .HasOne(u => u.Receiver)
+            //    .WithMany(t => t.Incoming)
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Code> Codes { get; set; }

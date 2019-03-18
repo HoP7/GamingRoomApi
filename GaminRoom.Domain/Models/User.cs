@@ -24,9 +24,6 @@ namespace GaminRoom.Domain.Models
         public int Coins { get; set; }
 
         public byte[] Salt { get; set; }
-        public List<Transfer> Incoming { get; set; }
-
-        public List<Transfer> Outgoing { get; set; }
 
         public string Token { get; set; }
     }

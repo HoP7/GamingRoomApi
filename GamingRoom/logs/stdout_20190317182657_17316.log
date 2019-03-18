@@ -1,0 +1,1686 @@
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
+      User profile is available. Using 'C:\Users\Gutic\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+Hosting environment: Development
+Content root path: D:\Repos\GamingRoomSolution\GamingRoom
+Now listening on: http://127.0.0.1:45778
+Application started. Press Ctrl+C to shut down.
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/swagger/index.html  
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 DEBUG http://localhost:30000/  0
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 30.2473ms 200 
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 173.884ms 200 text/html
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/swagger/v1/swagger.json  
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 185.6348ms 200 application/json;charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 POST http://localhost:30000/api/Transaction/addcoins application/json 24
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "AddCoins", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (52ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) with arguments (GaminRoom.Domain.Dto.AddCoinsDto) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (60ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Payments] ([Coins], [Date], [UserId])
+      VALUES (@p0, @p1, @p2);
+      SELECT [Id]
+      FROM [Payments]
+      WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 8000) (DbType = Binary), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      UPDATE [Users] SET [AddedFromLastBonus] = @p0, [Coins] = @p1, [Email] = @p2, [FirstName] = @p3, [LastName] = @p4, [Password] = @p5, [Salt] = @p6, [Token] = @p7, [Username] = @p8
+      WHERE [Id] = @p9;
+      SELECT @@ROWCOUNT;
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 7481.4508ms.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) in 9856.3187ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 9952.3582ms 200 
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/5 application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Get", controller = "User"}. Executing action GamingRoom.Controllers.UserController.Get (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (94ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (47ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (53ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (57ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.Get (GamingRoom) with arguments (5) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Id] = @__id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.Get (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 51.3037ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'GaminRoom.Domain.Models.User'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.Get (GamingRoom) in 416.0535ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 446.9762ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (187ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (37ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (37ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 87.2144ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 488.3894ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 499.2201ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 POST http://localhost:30000/api/Transaction/addcoins application/json 25
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "AddCoins", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) with arguments (GaminRoom.Domain.Dto.AddCoinsDto) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Payments] ([Coins], [Date], [UserId])
+      VALUES (@p0, @p1, @p2);
+      SELECT [Id]
+      FROM [Payments]
+      WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (58ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 8000) (DbType = Binary), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      UPDATE [Users] SET [AddedFromLastBonus] = @p0, [Coins] = @p1, [Email] = @p2, [FirstName] = @p3, [LastName] = @p4, [Password] = @p5, [Salt] = @p6, [Token] = @p7, [Username] = @p8
+      WHERE [Id] = @p9;
+      SELECT @@ROWCOUNT;
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 14208.5012ms.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) in 14436.7118ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 14447.0418ms 200 
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/5 application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Get", controller = "User"}. Executing action GamingRoom.Controllers.UserController.Get (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (56ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.Get (GamingRoom) with arguments (5) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Id] = @__id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.Get (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 47.5513ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'GaminRoom.Domain.Models.User'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.Get (GamingRoom) in 313.7355ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 336.3615ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (48ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (51ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 90.1277ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 347.8545ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 359.9744ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transfer/In application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransferController.GetIncoming (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "GetIncoming", controller = "Transfer"}. Executing action GamingRoom.Controllers.TransferController.GetIncoming (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransferController.GetIncoming (GamingRoom) with arguments (0) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransferController.GetIncoming (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 42.141ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Transfer, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransferController.GetIncoming (GamingRoom) in 241.2855ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransferController.GetIncoming (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 253.9688ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 98.5498ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 340.4415ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 352.3316ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 POST http://localhost:30000/api/Transaction/addcoins application/json 24
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "AddCoins", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (48ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (61ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) with arguments (GaminRoom.Domain.Dto.AddCoinsDto) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Payments] ([Coins], [Date], [UserId])
+      VALUES (@p0, @p1, @p2);
+      SELECT [Id]
+      FROM [Payments]
+      WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (52ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 8000) (DbType = Binary), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      UPDATE [Users] SET [AddedFromLastBonus] = @p0, [Coins] = @p1, [Email] = @p2, [FirstName] = @p3, [LastName] = @p4, [Password] = @p5, [Salt] = @p6, [Token] = @p7, [Username] = @p8
+      WHERE [Id] = @p9;
+      SELECT @@ROWCOUNT;
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 2066.6323ms.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) in 2315.2328ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 2325.6438ms 200 
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/5 application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Get", controller = "User"}. Executing action GamingRoom.Controllers.UserController.Get (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.Get (GamingRoom) with arguments (5) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Id] = @__id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.Get (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 44.3947ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'GaminRoom.Domain.Models.User'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.Get (GamingRoom) in 275.2754ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 285.6372ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (48ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (53ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (48ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 89.9946ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 364.6498ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 374.7567ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 POST http://localhost:30000/api/Transaction/addcoins application/json 24
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "AddCoins", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (116ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) with arguments (GaminRoom.Domain.Dto.AddCoinsDto) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Payments] ([Coins], [Date], [UserId])
+      VALUES (@p0, @p1, @p2);
+      SELECT [Id]
+      FROM [Payments]
+      WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 8000) (DbType = Binary), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      UPDATE [Users] SET [AddedFromLastBonus] = @p0, [Coins] = @p1, [Email] = @p2, [FirstName] = @p3, [LastName] = @p4, [Password] = @p5, [Salt] = @p6, [Token] = @p7, [Username] = @p8
+      WHERE [Id] = @p9;
+      SELECT @@ROWCOUNT;
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 2018.2394ms.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) in 2323.2512ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 2337.4603ms 200 
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/5 application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Get", controller = "User"}. Executing action GamingRoom.Controllers.UserController.Get (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (53ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (50ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.Get (GamingRoom) with arguments (5) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Id] = @__id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.Get (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 45.8049ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'GaminRoom.Domain.Models.User'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.Get (GamingRoom) in 305.0231ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 323.5783ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (51ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (47ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 85.2255ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 334.2986ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 343.8282ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/topplayers application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "TopPlayers", controller = "User"}. Executing action GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (37ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (47ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.TopPlayers (GamingRoom) - Validation state: Valid
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.TopPlayers (GamingRoom), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 10.3625ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType0`3[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[GaminRoom.Domain.Models.User, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], GamingRoom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.TopPlayers (GamingRoom) in 210.737ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 223.6642ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (52ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 89.1512ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 334.2851ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 344.9258ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 POST http://localhost:30000/api/Transaction application/json 25
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Post (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Post", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Post (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (54ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Post (GamingRoom) with arguments (GaminRoom.Domain.Dto.TransactionDto) - Validation state: Valid
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Post (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.2883ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.String'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Post (GamingRoom) in 256.0656ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Post (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 268.4386ms 500 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 POST http://localhost:30000/api/Transaction application/json 25
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Post (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Post", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Post (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (60ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Post (GamingRoom) with arguments (GaminRoom.Domain.Dto.TransactionDto) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Int32), @p2='?' (DbType = Single), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Transactions] ([Code], [Coins], [Hours], [TransactionDate], [UserId])
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+      SELECT [Id]
+      FROM [Transactions]
+      WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 8000) (DbType = Binary), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      UPDATE [Users] SET [AddedFromLastBonus] = @p0, [Coins] = @p1, [Email] = @p2, [FirstName] = @p3, [LastName] = @p4, [Password] = @p5, [Salt] = @p6, [Token] = @p7, [Username] = @p8
+      WHERE [Id] = @p9;
+      SELECT @@ROWCOUNT;
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Post (GamingRoom), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 182.7787ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.String'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Post (GamingRoom) in 432.1384ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Post (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 446.2301ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/5 application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Get", controller = "User"}. Executing action GamingRoom.Controllers.UserController.Get (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (52ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (48ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (47ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.Get (GamingRoom) with arguments (5) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Id] = @__id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.Get (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 46.3099ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'GaminRoom.Domain.Models.User'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.Get (GamingRoom) in 308.2417ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 325.6595ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (48ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (96ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (105ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (63ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (46ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 94.6479ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 485.4559ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 503.459ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/topplayers application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "TopPlayers", controller = "User"}. Executing action GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (47ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.TopPlayers (GamingRoom) - Validation state: Valid
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.TopPlayers (GamingRoom), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0718ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType0`3[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[GaminRoom.Domain.Models.User, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], GamingRoom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.TopPlayers (GamingRoom) in 189.0401ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 198.286ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (56ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (48ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 97.2315ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 364.3172ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 378.9343ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 POST http://localhost:30000/api/Transaction/addcoins application/json 26
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "AddCoins", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (50ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (47ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) with arguments (GaminRoom.Domain.Dto.AddCoinsDto) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Payments] ([Coins], [Date], [UserId])
+      VALUES (@p0, @p1, @p2);
+      SELECT [Id]
+      FROM [Payments]
+      WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 8000) (DbType = Binary), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      UPDATE [Users] SET [AddedFromLastBonus] = @p0, [Coins] = @p1, [Email] = @p2, [FirstName] = @p3, [LastName] = @p4, [Password] = @p5, [Salt] = @p6, [Token] = @p7, [Username] = @p8
+      WHERE [Id] = @p9;
+      SELECT @@ROWCOUNT;
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 166.7762ms.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom) in 410.206ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.AddCoins (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 419.2965ms 200 
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/5 application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Get", controller = "User"}. Executing action GamingRoom.Controllers.UserController.Get (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (47ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.Get (GamingRoom) with arguments (5) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Id] = @__id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.Get (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 46.9926ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'GaminRoom.Domain.Models.User'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.Get (GamingRoom) in 286.8344ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 301.0693ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (55ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (45ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (37ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 82.3194ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 338.5444ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 348.3814ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/topplayers application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "TopPlayers", controller = "User"}. Executing action GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (48ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.TopPlayers (GamingRoom) - Validation state: Valid
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.TopPlayers (GamingRoom), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0543ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType0`3[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[GaminRoom.Domain.Models.User, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], GamingRoom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.TopPlayers (GamingRoom) in 205.1994ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 214.6514ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/Transaction/payments application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Payments", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Payments (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (50ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (52ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (61ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (39ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[Date], [x].[UserId]
+      FROM [Payments] AS [x]
+      WHERE [x].[UserId] = @__user_Id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Payments (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 106.6426ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[GaminRoom.Domain.Models.Payment, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Payments (GamingRoom) in 357.1117ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Payments (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 369.9846ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 POST http://localhost:30000/api/Transaction application/json 26
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.TransactionController.Post (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Post", controller = "Transaction"}. Executing action GamingRoom.Controllers.TransactionController.Post (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.TransactionController.Post (GamingRoom) with arguments (GaminRoom.Domain.Dto.TransactionDto) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Int32), @p2='?' (DbType = Single), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Transactions] ([Code], [Coins], [Hours], [TransactionDate], [UserId])
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+      SELECT [Id]
+      FROM [Transactions]
+      WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 8000) (DbType = Binary), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      UPDATE [Users] SET [AddedFromLastBonus] = @p0, [Coins] = @p1, [Email] = @p2, [FirstName] = @p3, [LastName] = @p4, [Password] = @p5, [Salt] = @p6, [Token] = @p7, [Username] = @p8
+      WHERE [Id] = @p9;
+      SELECT @@ROWCOUNT;
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.TransactionController.Post (GamingRoom), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 179.605ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.String'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.TransactionController.Post (GamingRoom) in 409.2374ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.TransactionController.Post (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 418.5198ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/5 application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "Get", controller = "User"}. Executing action GamingRoom.Controllers.UserController.Get (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (51ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (52ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (47ms) [Parameters=[@__token_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Token] = @__token_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.Get (GamingRoom) with arguments (5) - Validation state: Valid
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (50ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [x].[Id], [x].[AddedFromLastBonus], [x].[Coins], [x].[Email], [x].[FirstName], [x].[LastName], [x].[Password], [x].[Salt], [x].[Token], [x].[Username]
+      FROM [Users] AS [x]
+      WHERE [x].[Id] = @__id_0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.Get (GamingRoom), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 54.786ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'GaminRoom.Domain.Models.User'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.Get (GamingRoom) in 330.607ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.Get (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 346.3484ms 200 application/json; charset=utf-8
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:30000/api/User/topplayers application/json 
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)'
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Route matched with {action = "TopPlayers", controller = "User"}. Executing action GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 2.2.2-servicing-10034 initialized 'GamingRoomContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (41ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[AddedFromLastBonus], [u].[Coins], [u].[Email], [u].[FirstName], [u].[LastName], [u].[Password], [u].[Salt], [u].[Token], [u].[Username]
+      FROM [Users] AS [u]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Coins], [x].[ReceiverId], [x].[SenderId], [x].[TransferDate], [x.Sender].[Id], [x.Sender].[AddedFromLastBonus], [x.Sender].[Coins], [x.Sender].[Email], [x.Sender].[FirstName], [x.Sender].[LastName], [x.Sender].[Password], [x.Sender].[Salt], [x.Sender].[Token], [x.Sender].[Username], [x.Receiver].[Id], [x.Receiver].[AddedFromLastBonus], [x.Receiver].[Coins], [x.Receiver].[Email], [x.Receiver].[FirstName], [x.Receiver].[LastName], [x.Receiver].[Password], [x.Receiver].[Salt], [x.Receiver].[Token], [x.Receiver].[Username]
+      FROM [Transfers] AS [x]
+      INNER JOIN [Users] AS [x.Sender] ON [x].[SenderId] = [x.Sender].[Id]
+      INNER JOIN [Users] AS [x.Receiver] ON [x].[ReceiverId] = [x.Receiver].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (51ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[Code], [x].[Coins], [x].[Hours], [x].[TransactionDate], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Transactions] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (50ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [x].[Id], [x].[DateExpired], [x].[GeneratedCode], [x].[UserId], [x.User].[Id], [x.User].[AddedFromLastBonus], [x.User].[Coins], [x.User].[Email], [x.User].[FirstName], [x.User].[LastName], [x.User].[Password], [x.User].[Salt], [x.User].[Token], [x.User].[Username]
+      FROM [Codes] AS [x]
+      INNER JOIN [Users] AS [x.User] ON [x].[UserId] = [x.User].[Id]
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method GamingRoom.Controllers.UserController.TopPlayers (GamingRoom) - Validation state: Valid
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method GamingRoom.Controllers.UserController.TopPlayers (GamingRoom), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0437ms.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType0`3[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[GaminRoom.Domain.Models.User, GaminRoom.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], GamingRoom, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action GamingRoom.Controllers.UserController.TopPlayers (GamingRoom) in 199.403ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'GamingRoom.Controllers.UserController.TopPlayers (GamingRoom)'
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 209.2101ms 200 application/json; charset=utf-8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

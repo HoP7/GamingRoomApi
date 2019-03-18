@@ -7,6 +7,7 @@ using GaminRoom.Domain.Dto;
 using GaminRoom.Domain.Helpers;
 using GaminRoom.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GamingRoom.Controllers
 {
@@ -21,7 +22,8 @@ namespace GamingRoom.Controllers
         [HttpPost("login")]
         public ActionResult<User> Login([FromBody] LoginDto login)
         {
-            var user = Users.FirstOrDefault(x => x.Username == login.Username);
+            var user = _db.Users.FirstOrDefault(x => x.Username == login.Username);
+
             if (user == null)
                 return StatusCode(500, "Invalid username/password");
             if(user.Password != HashPassword.GeneratePassword(user.Salt, login.Password))

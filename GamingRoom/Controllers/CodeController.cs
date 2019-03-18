@@ -33,7 +33,7 @@ namespace GamingRoom.Controllers
             {
                 UserId = user.Id,
                 GeneratedCode = generatedCode,
-                DateExpired = new DateTime().AddDays(1)
+                DateExpired = DateTime.Now.AddDays(1)
             };
             _db.Codes.Add(code);
             _db.SaveChanges();

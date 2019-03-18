@@ -22,7 +22,8 @@ namespace GamingRoom.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Transaction>> Get()
         {
-            return Transactions;
+            var user = HttpContext.GetUser();
+            return Transactions.Where(x => x.UserId == user.Id).ToList();
         }
 
         // GET api/values/5
@@ -47,8 +48,9 @@ var payments =    _db.Payments.Where(x => x.UserId == user.Id).ToList();
 
             if(user.AddedFromLastBonus >= 500)
             {
-                user.AddedFromLastBonus -= 500;
-                user.Coins += 100;
+                var toAdd = (user.AddedFromLastBonus / 500 );
+                user.AddedFromLastBonus -= (user.AddedFromLastBonus/500)*500;
+                user.Coins += (user.AddedFromLastBonus / 500) * 100;
             }
             _db.Users.Update(user);
             _db.Payments.Add(new Payment { Date = DateTime.UtcNow, Coins = addCoinsDto.Coins, UserId = user.Id });

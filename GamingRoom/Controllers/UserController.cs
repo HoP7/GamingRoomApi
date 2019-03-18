@@ -6,6 +6,7 @@ using GaminRoom.Domain;
 using GaminRoom.Domain.Helpers;
 using GaminRoom.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GamingRoom.Controllers
 {
@@ -28,7 +29,7 @@ namespace GamingRoom.Controllers
         [HttpGet("{id}")]
         public ActionResult<User> Get(int id)
         {
-            var user = Users.FirstOrDefault(x => x.Id == id);
+            var user = _db.Users.FirstOrDefault(x => x.Id == id); 
             return user;
         }
 
@@ -80,7 +81,13 @@ namespace GamingRoom.Controllers
             var existingUser = Users.FirstOrDefault(x => (x.Username == user.Username || x.Email == user.Email) && x.Id != user.Id);
             if (existingUser != null)
                 return StatusCode(500,"Already exist user with that username or email");
-            _db.Users.Update(user);
+            u.Password = newPassword;
+            u.Salt = salt;
+            u.Email = user.Email;
+            u.FirstName = user.FirstName;
+            u.LastName = user.LastName;
+            u.Username = user.Username;
+            _db.Users.Update(u);
             _db.SaveChanges();
             return Ok();
         }
@@ -97,9 +104,10 @@ namespace GamingRoom.Controllers
         [HttpGet("topplayers")]
         public ActionResult TopPlayers()
         {
+            int number = 1;
             var transactions = Transactions.GroupBy(x => x.UserId)
-                                   .Select(g => new { User = Users.FirstOrDefault(y => y.Id == g.Key) ,
-                                   Coins = g.Sum(c => c.Coins)}).ToList();
+                                   .Select(g => new { User = Users.FirstOrDefault(y => y.Id == g.Key),
+                                       Coins = g.Sum(c => c.Coins) }).OrderByDescending(x => x.Coins).Select(g => new { User = g.User, Coins = g.Coins, Position = number++ }).ToList();
             return Ok(transactions);
         }
     }

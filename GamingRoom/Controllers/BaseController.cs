@@ -21,7 +21,7 @@ namespace GamingRoom.Controllers
         public BaseController(GamingRoomContext db)
         {
             _db = db;
-            Users = _db.Users.Include(x => x.Outgoing).Include(x=> x.Incoming).ToList();
+            Users = _db.Users.ToList();
             Transfers = _db.Transfers.Include(x => x.Receiver).Include(x => x.Sender).ToList();
             Transactions = _db.Transactions.Include(x=> x.User).ToList();
             Codes = _db.Codes.Include(x => x.User).ToList();

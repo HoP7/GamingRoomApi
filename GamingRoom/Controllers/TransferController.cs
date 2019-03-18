@@ -28,13 +28,16 @@ namespace GamingRoom.Controllers
         [HttpGet("in")]
         public ActionResult<IEnumerable<Transfer>> GetIncoming(int userId)
         {
-            return Transfers.Where(x => x.ReceiverId == userId).ToList();
+            var user = HttpContext.GetUser();
+
+            return Transfers.Where(x => x.ReceiverId == user.Id).ToList();
         }
 
         [HttpGet("out")]
         public ActionResult<IEnumerable<Transfer>> GetOutcoming(int userId)
         {
-            return Transfers.Where(x => x.SenderId == userId).ToList();
+            var user = HttpContext.GetUser();
+            return Transfers.Where(x => x.SenderId == user.Id).ToList();
         }
 
         // GET api/values/5
@@ -51,10 +54,12 @@ namespace GamingRoom.Controllers
             if (string.IsNullOrEmpty(transfer.UserCode))
                 return StatusCode(500,"User code is required");
 
-            var code = Codes.FirstOrDefault(x => x.GeneratedCode == transfer.UserCode && new DateTime() < x.DateExpired);
+            var code = Codes.FirstOrDefault(x => x.GeneratedCode == transfer.UserCode && DateTime.Now < x.DateExpired);
             if (code == null)
                 return StatusCode(500,"Code doesn't exist or its expired");
 
+            if (code.UserId == transfer.UserId)
+                return StatusCode(500, "You can't send coins to yourself");
             var t = new Transfer
             {
                 Coins = transfer.Coins,
@@ -64,6 +69,8 @@ namespace GamingRoom.Controllers
             };
             var receiver = Users.FirstOrDefault(x => x.Id == code.UserId);
             var sender = Users.FirstOrDefault(x => x.Id == transfer.UserId);
+            if (sender.Coins < transfer.Coins)
+                return StatusCode(500, "You don't have enough coins to send");
             receiver.Coins += transfer.Coins;
             sender.Coins -= transfer.Coins;
             _db.Users.Update(receiver);
